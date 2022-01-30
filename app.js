@@ -12,24 +12,24 @@ app.use(cors());
 const Auth = require('./modules/Auth');
 const Users = require('./modules/Users');
 
-app.get('/', function (req, res) {
+app.get('/', function(req, res) {
     res.send('Server On')
 })
 
 //ROUTE AUTH ***********************************************************
-app.get('/Auth/:username/:password', function (req, res) {
+app.post('/Auth/:username/:password', function(req, res) {
     const username = req.params['username'];
     const password = req.params['password'];
 
     async function auth() {
-        res.json(await Auth(username,password));
+        res.json(await Auth(username, password));
     };
 
     auth();
 });
 
 //ROUTE LIST USERS ******************************************************
-app.get('/User/:auth_token', function (req, res) {
+app.get('/User/:auth_token', function(req, res) {
     const auth_token = req.params['auth_token'];
 
     async function getUsers() {
@@ -38,6 +38,6 @@ app.get('/User/:auth_token', function (req, res) {
     getUsers(auth_token);
 });
 
-app.listen(port, ()=>{
+app.listen(port, () => {
     console.log(`Server online http://localhost:${port}`)
 });
