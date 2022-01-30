@@ -22,7 +22,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 
-INSERT INTO `users` VALUES (1,'Davi Santiago','(21) 96502-4474','davibomfimsantiago@gmail.com','$2b$10$uUAVCvEZ47tYQo3pcIqQSO11ganp.nxJ3QCo6L0D8HvYeNXrcA3sa','132.653.407-67','davibs',NULL,'Ativo','Administrador','Gerência','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9EQiI6MSwiaWF0IjoxNjQzNTc2MDg1LCJleHAiOjE2NDM1NzYzODV9.kTZMcPngRZlyiitwv1psM71jSO0Jzn074gS8PCQ3CcA'),(2,'Alexandre Oliveira','(21) 96444-8046','alexandre.oliveira@celeritech.com.br','$2b$10$uUAVCvEZ47tYQo3pcIqQSO11ganp.nxJ3QCo6L0D8HvYeNXrcA3sa','000.000.000-00','alexandre.oliveira',NULL,'Ativo','Administrador','Gerência','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9EQiI6MiwiaWF0IjoxNjQzNTY1Mzc2LCJleHAiOjE2NDM1NjU2NzZ9.iIQ7NW6cNrqXphpVVpyBK6Tmt7kt45dmdtI3NFlBl1A');
+INSERT INTO `users` VALUES (1,'Davi Santiago','(21) 96999-9999','davibomfimsantiago@gmail.com','$2b$10$uUAVCvEZ47tYQo3pcIqQSO11ganp.nxJ3QCo6L0D8HvYeNXrcA3sa','999.999.999-99','davibs',NULL,'Ativo','Administrador','Gerência','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9EQiI6MSwiaWF0IjoxNjQzNTc2MDg1LCJleHAiOjE2NDM1NzYzODV9.kTZMcPngRZlyiitwv1psM71jSO0Jzn074gS8PCQ3CcA'),(2,'Alexandre Oliveira','(21) 99999-9999','alexandre.oliveira@celeritech.com.br','$2b$10$uUAVCvEZ47tYQo3pcIqQSO11ganp.nxJ3QCo6L0D8HvYeNXrcA3sa','000.000.000-00','alexandre.oliveira',NULL,'Ativo','Administrador','Gerência','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9EQiI6MiwiaWF0IjoxNjQzNTY1Mzc2LCJleHAiOjE2NDM1NjU2NzZ9.iIQ7NW6cNrqXphpVVpyBK6Tmt7kt45dmdtI3NFlBl1A');
 
 UNLOCK TABLES;
 
