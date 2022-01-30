@@ -12,22 +12,22 @@ const con = mysql.createConnection({
 });
 
 // Function that returns all users
-function Users(token){
+function Users(token) {
     return new Promise(resolve => {
         con.connect(function(err) {
-            if (err){
-                resolve ({error: true, result: []})
-            }else{
-                con.query(`SELECT * FROM security.users WHERE AuthToken = '${token}';`, function (err, result, fields) {
-                    if (err){
-                        resolve({error: true, result: []})
-                    }else{
-                        if(result.length > 0){
-                            con.query(`SELECT * FROM security.users;`, function (err, result, fields) {
-                                resolve({error: true, result: result})
+            if (err) {
+                resolve({ error: true, result: [] })
+            } else {
+                con.query(`SELECT * FROM security.users WHERE AuthToken = '${token}';`, function(err, result, fields) {
+                    if (err) {
+                        resolve({ error: true, result: [] })
+                    } else {
+                        if (result.length > 0) {
+                            con.query(`SELECT * FROM security.users;`, function(err, result, fields) {
+                                resolve({ error: false, result: result })
                             })
-                        }else{
-                            resolve({error: true, result: []})
+                        } else {
+                            resolve({ error: true, result: [] })
                         }
                     }
                 });
