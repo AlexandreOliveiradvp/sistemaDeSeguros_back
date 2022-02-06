@@ -15,42 +15,48 @@ const con = mysql.createConnection({
 });
 
 // Function that get token auth user
-function Auth(username,password){
+function Auth(username, password) {
+    var timeInMs = new Date();
+    const nowDate = (`${timeInMs.getDay() < 9 ? `0${timeInMs.getDay()}`:timeInMs.getDay()}/${timeInMs.getMonth() < 9 ? `0${timeInMs.getMonth()}`:timeInMs.getMonth()}/${timeInMs.getFullYear()}`);
+    var userInfo = {
+        name: "",
+        nowDate: nowDate
+    }
     return new Promise(resolve => {
         con.connect(function(err) {
-            if (err){
-                resolve ({error: true, token: null})
-            }else{
-                con.query(`SELECT * FROM security.users WHERE username = '${username}';`, function (err, result, fields) {
-                    if (err){
-                        resolve({error: true, token: null})
-                    }else{
-                        if(result.length > 0){
-
+            if (err) {
+                resolve({ error: true, token: null })
+            } else {
+                con.query(`SELECT * FROM security.users WHERE username = '${username}';`, function(err, result, fields) {
+                    if (err) {
+                        resolve({ error: true, token: null, userInfo })
+                    } else {
+                        if (result.length > 0) {
+                            userInfo.name = result[0].Name;
                             var password_DB = result[0].Password
                             var id_DB = result[0].Id
-                            
+
                             bcrypt.compare(password, password_DB, function(err, result) {
-                                if(result == true){
+                                if (result == true) {
                                     const token = jwt.sign({ id_DB }, "security2022key", {
                                         expiresIn: 300 // expires in 5 min
                                     });
-    
+
                                     var sql = `UPDATE security.users SET AuthToken='${token}' WHERE Id=${id_DB};`;
-                                    con.query(sql, function (err, result) {
-                                        if (err){
+                                    con.query(sql, function(err, result) {
+                                        if (err) {
                                             resolve({ error: true, token: null });
-                                        }else{
-                                            resolve({ error: false, token: token});
+                                        } else {
+                                            resolve({ error: false, token: token, userInfo });
                                         }
                                     })
-                                }else{
+                                } else {
                                     resolve({ error: true, token: null });
                                 }
                             });
 
-                        }else{
-                            resolve({error: true, result: []})
+                        } else {
+                            resolve({ error: true, token: null })
                         }
                     }
                 });
