@@ -4,15 +4,18 @@ const app = express();
 const port = 3000;
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
+const bodyParser = require('body-parser');
 
 // Express Configuration
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //Imports Modules
 const Auth = require('./modules/Auth');
 const Users = require('./modules/Users');
 const Clients = require('./modules/Clients');
 const Operators = require('./modules/Operators');
+const NewClient = require('./modules/NewClient');
 
 app.get('/', function(req, res) {
     res.send('Server On');
@@ -48,6 +51,16 @@ app.get('/Client/:auth_token', function(req, res) {
         res.json(await Clients(auth_token));
     };
     getClients(auth_token);
+});
+
+//ROUTE NEW CLIENTS ****************************************************
+app.post('/NewClient/:auth_token', function(req, res) {
+    const auth_token = req.params['auth_token'];
+
+    async function postClients() {
+        res.json(await NewClient(auth_token, req.headers));
+    };
+    postClients();
 });
 
 //ROUTE LIST Operators **************************************************
